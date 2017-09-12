@@ -34,7 +34,7 @@ if (isProduction) {
 
 module.exports = {
     entry: {
-        app: "./src/index.js"
+        app: "./js/index.js"
     },
     devtool: 'source-map',
     plugins: plugins,
@@ -61,9 +61,11 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ]
+                use: 'file-loader?' + JSON.stringify({
+                    name: '[name].[ext]',
+                    publicPath: '../',
+                    outputPath: 'images/',
+                })
             }
         ]
     }
